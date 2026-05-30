@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")!).render(
                 <InteractivePortrait
                     image="/base.png"
                     revealImage="/reveal.png"
-                    backgroundText="Shahmeer Imran"
+                    backgroundText=""
                     backgroundTextColor="#D71920"
                     backgroundTextOpacity={82}
                     borderRadius={0}

@@ -60,7 +60,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
     const {
         image = "",
         revealImage = "",
-        backgroundText = "Shahmeer Imran",
+        backgroundText = "",
         backgroundTextColor = "#D71920",
         backgroundTextOpacity = 74,
         borderRadius = 28,
@@ -461,7 +461,7 @@ addPropertyControls(InteractivePortrait, {
     backgroundText: {
         type: ControlType.String,
         title: "BG Text",
-        defaultValue: "Shahmeer Imran",
+        defaultValue: "",
     },
     backgroundTextColor: {
         type: ControlType.Color,
