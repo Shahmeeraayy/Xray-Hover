@@ -13,6 +13,8 @@ body,
 body {
     min-height: 100%;
     overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
     background: #f5f5f4;
     color: #f7f4ef;
     font-family:

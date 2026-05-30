@@ -105,6 +105,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
 
     const glowAlpha = Math.min(Math.max(glowStrength, 0), 100) / 100
     const textOpacity = Math.min(Math.max(backgroundTextOpacity, 0), 100) / 100
+    const readableTextOpacity = Math.min(textOpacity + 0.12, 0.92)
     const softStop = Math.max(revealSize - revealSoftness, 0)
     const activeRevealImage = revealImage || image
     const spotlight = useMotionTemplate`radial-gradient(circle at ${glowX}px ${glowY}px, ${withAlpha(
@@ -197,6 +198,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                                 width: "110%",
                                 height: "110%",
                                 objectFit: "cover",
+                                objectPosition: "center center",
                                 x: imageX,
                                 y: imageY,
                                 scale: 1.035,
@@ -213,16 +215,17 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                                 style={{
                                     position: "absolute",
                                     left: "50%",
-                                    top: "46%",
+                                    top: "43%",
                                     zIndex: 1,
-                                    width: "120%",
+                                    width: "96%",
                                     transform: "translate(-50%, -50%)",
                                     color: backgroundTextColor,
                                     opacity: textOpacity,
                                     fontFamily:
                                         "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-                                    fontSize: "clamp(76px, 15cqw, 230px)",
-                                    lineHeight: 0.82,
+                                    fontSize:
+                                        "clamp(54px, min(14cqw, 15cqh), 220px)",
+                                    lineHeight: 0.84,
                                     fontWeight: 900,
                                     letterSpacing: 0,
                                     textAlign: "center",
@@ -230,6 +233,40 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                                     mixBlendMode: "normal",
                                     textShadow:
                                         "0 1px 0 rgba(255,255,255,0.52), 0 18px 60px rgba(0,0,0,0.16)",
+                                    pointerEvents: "none",
+                                    userSelect: "none",
+                                }}
+                            >
+                                {backgroundText}
+                            </motion.div>
+                        )}
+
+                        {backgroundText && (
+                            <motion.div
+                                aria-hidden
+                                style={{
+                                    position: "absolute",
+                                    left: "50%",
+                                    top: "43%",
+                                    zIndex: 3,
+                                    width: "96%",
+                                    transform: "translate(-50%, -50%)",
+                                    color: "transparent",
+                                    opacity: readableTextOpacity,
+                                    fontFamily:
+                                        "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+                                    fontSize:
+                                        "clamp(54px, min(14cqw, 15cqh), 220px)",
+                                    lineHeight: 0.84,
+                                    fontWeight: 900,
+                                    letterSpacing: 0,
+                                    textAlign: "center",
+                                    textTransform: "uppercase",
+                                    WebkitTextStroke: `clamp(1px, 0.34cqw, 4px) ${backgroundTextColor}`,
+                                    textShadow: `0 18px 70px ${withAlpha(
+                                        backgroundTextColor,
+                                        0.24
+                                    )}`,
                                     pointerEvents: "none",
                                     userSelect: "none",
                                 }}
@@ -250,7 +287,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                                     WebkitMaskRepeat: "no-repeat",
                                     maskRepeat: "no-repeat",
                                     pointerEvents: "none",
-                                    zIndex: 2,
+                                    zIndex: 4,
                                 }}
                             >
                                 <motion.img
@@ -263,6 +300,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                                         width: "112%",
                                         height: "112%",
                                         objectFit: "cover",
+                                        objectPosition: "center center",
                                         x: imageX,
                                         y: imageY,
                                         scale: revealScale,
@@ -310,7 +348,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                     style={{
                         position: "absolute",
                         inset: 0,
-                        zIndex: 3,
+                        zIndex: 5,
                         background: spotlight,
                         opacity: smoothGlowOpacity,
                         mixBlendMode: "screen",
@@ -323,7 +361,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                     style={{
                         position: "absolute",
                         inset: 0,
-                        zIndex: 4,
+                        zIndex: 6,
                         background: `linear-gradient(to top, rgba(0,0,0,${
                             overlayDarkness / 100
                         }) 0%, rgba(0,0,0,${
@@ -338,7 +376,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                     style={{
                         position: "absolute",
                         inset: 0,
-                        zIndex: 5,
+                        zIndex: 7,
                         borderRadius,
                         border: "1px solid rgba(255,255,255,0.22)",
                         boxShadow:
@@ -354,7 +392,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                     style={{
                         position: "absolute",
                         inset: 0,
-                        zIndex: 6,
+                        zIndex: 8,
                         background: revealRing,
                         opacity: smoothGlowOpacity,
                         mixBlendMode: "screen",
@@ -369,7 +407,7 @@ export default function InteractivePortrait(props: InteractivePortraitProps) {
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            zIndex: 7,
+                            zIndex: 9,
                             padding: "clamp(18px, 7cqw, 34px)",
                             color: textColor,
                             fontFamily:

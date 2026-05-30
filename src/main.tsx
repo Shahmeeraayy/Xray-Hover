@@ -12,12 +12,12 @@ createRoot(document.getElementById("root")!).render(
                     revealImage="/reveal.png"
                     backgroundText="Shahmeer Imran"
                     backgroundTextColor="#D71920"
-                    backgroundTextOpacity={78}
+                    backgroundTextOpacity={82}
                     borderRadius={0}
-                    intensity={7}
+                    intensity={5}
                     glowColor="#FFFFFF"
                     glowStrength={62}
-                    revealSize={340}
+                    revealSize={300}
                     revealSoftness={58}
                     showText={false}
                     title="Lorenzo"
